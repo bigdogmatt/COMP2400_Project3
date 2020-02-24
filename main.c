@@ -5,6 +5,8 @@
 void new_strcmpTest();
 void new_strncmpTest();
 void new_strchrTest();
+void new_strcatTest();
+void new_strncatTest();
 
 // main used for testing purposes
 int main()
@@ -15,17 +17,27 @@ int main()
 	printf("\n \n \n");
 	new_strchrTest();
 	printf("\n \n \n");
+	new_strcatTest();
+	printf("\n \n \n");
+	new_strncatTest();
+	printf("\n \n \n");
 
 	return 0;
 }
 
 void new_strcmpTest()
 {
-	int result = strcmp("hello", "helloo");
-	int result2 = new_strcmp("hello", "helloo");
+	char libTest[100] = "This is a test of the c library";
+	char myTest[100] = "My mother is an alien";
 
-	int result3 = strcmp("helloo", "hello");
-	int result4 = new_strcmp("helloo", "hello");
+	int result = strcmp(libTest, myTest);
+	int result2 = new_strcmp(libTest, myTest);
+
+	// int result = strcmp("hello", "helloo");
+	// int result2 = new_strcmp("hello", "helloo");
+
+	int result3 = strcmp("helloo", "hellooo");
+	int result4 = new_strcmp("helloo", "hellooo");
 
 	int result5 = strcmp("yellow", "hello");
 	int result6 = new_strcmp("yellow", "hello");
@@ -36,8 +48,8 @@ void new_strcmpTest()
 	int result9 = strcmp("hello", "");
 	int result10 = new_strcmp("hello", "");
 
-	int result11 = strcmp("", "hello");
-	int result12 = new_strcmp("", "hello");
+	int result11 = strcmp("Hello", "hello");
+	int result12 = new_strcmp("Hello", "hello");
 
 	int result13 = strcmp("truck", "pillow");
 	int result14 = new_strcmp("truck", "pillow");
@@ -45,7 +57,7 @@ void new_strcmpTest()
 	int result15 = strcmp("truck", "truck");
 	int result16 = new_strcmp("truck", "truck");
 
-	printf("new_strcmp Testing\n");
+	printf("***************new_strcmp Testing***************\n");
 	printf("String library: %d \t My library: %d\n", result, result2);
 	printf("String library: %d \t My library: %d\n", result3, result4);
 	printf("String library: %d \t My library: %d\n", result5, result6);
@@ -76,13 +88,13 @@ void new_strncmpTest()
 	int result11 = strncmp("", "hello", 5);
 	int result12 = new_strncmp("", "hello", 5);
 
-	int result13 = strncmp("truck", "pillow", 10);
-	int result14 = new_strncmp("truck", "pillow", 10);
+	int result13 = strncmp("truck", "pillowings", 10);
+	int result14 = new_strncmp("truck", "pillowings", 10);
 
 	int result15 = strncmp("truck", "truck", 9);
 	int result16 = new_strncmp("truck", "truck", 9);
 
-	printf("new_strncmp Testing\n");
+	printf("***************new_strncmp Testing***************\n");
 	printf("String library: %d \t My library: %d\n", result, result2);
 	printf("String library: %d \t My library: %d\n", result3, result4);
 	printf("String library: %d \t My library: %d\n", result5, result6);
@@ -119,13 +131,70 @@ void new_strchrTest()
 	char* result15 = strchr("\0", '\0');
 	char* result16 = new_strchr("\0", '\0');
 
-	printf("new_strchr Testing\n");
-	printf("String library: %c \t My library: %c\n", result, result2);
-	printf("String library: %c \t My library: %c\n", result3, result4);
-	printf("String library: %c \t My library: %c\n", result5, result6);
-	printf("String library: %c \t My library: %c\n", result7, result8);
-	printf("String library: %c \t My library: %c\n", result9, result10);
-	printf("String library: %c \t My library: %c\n", result11, result12);
-	printf("String library: %c \t My library: %c\n", result13, result14);
-	printf("String library: %c \t My library: %c\n", result15, result16);
+	printf("***************new_strchr Testing***************\n");
+	printf("String library: %s \t My library: %s\n", result, result2);
+	printf("String library: %s \t My library: %s\n", result3, result4);
+	printf("String library: %s \t My library: %s\n", result5, result6);
+	printf("String library: %s \t My library: %s\n", result7, result8);
+	printf("String library: %s \t My library: %s\n", result9, result10);
+	printf("String library: %s \t My library: %s\n", result11, result12);
+	printf("String library: %s \t My library: %s\n", result13, result14);
+	printf("String library: %s \t My library: %s\n", result15, result16);
+}
+
+void new_strcatTest()
+{
+	char destination1[100];
+	char destination2[100];
+	const char* destination = "wom";
+	const char* source = "bats";
+	const char* source2 = " are animals";
+	const char* source3 = " that have";
+	const char* source4 = " brown fur";
+	strcpy(destination1, destination);
+	strcpy(destination2, destination);
+	char* result = strcat(destination1, source);
+	char* result2 = new_strcat(destination2, source);
+
+	char* result3 = strcat(destination1, source2);
+	char* result4 = new_strcat(destination2, source2);
+
+	char* result5 = strcat(destination1, source3);
+	char* result6 = new_strcat(destination2, source3);
+
+	char* result7 = strcat(destination1, source4);
+	char* result8 = new_strcat(destination2, source4);
+
+
+	printf("***************new_strcat Testing***************\n");
+	printf("String library: %s \t \nMy library: %s\n", destination1, destination2);
+}
+
+void new_strncatTest()
+{
+	char destination1[100];
+	char destination2[100];
+	const char* destination = "wom";
+	const char* source = "bats aren't animals";
+	const char* source2 = " are animals";
+	const char* source3 = " that have green fur";
+	const char* source4 = " brown fur and wear glasses";
+	strcpy(destination1, destination);
+	strcpy(destination2, destination);
+
+	char* result = strncat(destination1, source, 4);
+	char* result2 = new_strncat(destination2, source, 4);
+
+	char* result3 = strncat(destination1, source2, 20);
+	char* result4 = new_strncat(destination2, source2, 20);
+
+	char* result5 = strncat(destination1, source3, 10);
+	char* result6 = new_strncat(destination2, source3, 10);
+
+	char* result7 = strncat(destination1, source4, 10);
+	char* result8 = new_strncat(destination2, source4, 10);
+
+
+	printf("***************new_strncat Testing***************\n");
+	printf("String library: %s \t \nMy library: %s\n", destination1, destination2);
 }

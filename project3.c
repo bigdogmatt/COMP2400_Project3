@@ -1,6 +1,6 @@
 #include <stddef.h>
 
-#include <string.h>
+#include <string.h> //REMOVE WHEN FINISHED
 
 char* new_strcpy(char* destination, const char* source);
 char* new_strncpy(char* destination, const char* source, size_t n);
@@ -16,6 +16,7 @@ char* new_strstr(const char* haystack, const char* needle);
 char* new_strcpy(char* destination, const char* source)
 {
 
+	return (char*)NULL;
 }
 
 /*
@@ -26,6 +27,7 @@ characters are filled with null characters.
 char* new_strncpy(char* destination, const char* source, size_t n)
 {
 
+	return (char*)NULL;
 }
 
 /*
@@ -35,47 +37,18 @@ and 0 if the two strings are equal.
 */
 int new_strcmp(const char* string1, const char* string2)
 {
-	size_t length1 = new_strlen(string1);
-	size_t length2 = new_strlen(string2);
-	char str1[length1 + 1];
-	char str2[length2 + 1];
-	strcpy(str1, string1); //CHANGE THIS ONCE new_strcpy IS FINISHED
-	strcpy(str2, string2); //CHANGE THIS ONCE new_strcpy IS FINISHED
-	int count = 0;
-	char c1;
-	char c2;
+	unsigned char c1;
+	unsigned char c2;
 
-	while((c1 = str1[count]) != '\0' && (c2 = str2[count]) != '\0')
+	while(*string1 != '\0' && *string1 == *string2)
 	{
-		if(c1 >= 'A' && c1 <= 'Z')
-		{
-			c1 += ('A' - 'a');
-		}
-		if(c2 >= 'A' && c2 <= 'Z')
-		{
-			c2 += ('A' - 'a');
-		}
-
-		if(c1 > c2)
-		{
-			return 1;
-		}
-		else if(c1 < c2)
-		{
-			return -1;
-		}
-		++count;
+		++string1;
+		++string2;
 	}
 
-	if(length1 > length2)
-	{
-		return 1;
-	}
-	else if(length1 < length2)
-	{
-		return -1;
-	}
-	return 0;
+	c1 = (unsigned char)*string1;
+	c2 = (unsigned char)*string2;
+	return c1 - c2;
 }
 
 /*
@@ -84,34 +57,29 @@ first n characters.
 */
 int new_strncmp(const char* string1, const char* string2, size_t n)
 {
-	size_t length1 = new_strlen(string1);
-	size_t length2 = new_strlen(string2);
-	char str1[length1 + 1];
-	char str2[length2 + 1];
-	strncpy(str1, string1, n); //CHANGE THIS ONCE new_strncpy IS FINISHED
-	strncpy(str2, string2, n); //CHANGE THIS ONCE new_strncpy IS FINISHED
+	unsigned char c1;
+	unsigned char c2;
+	size_t counter = 0;
 
-	for(size_t i = 0; i < n; ++i)
+	while(counter < n && *string1 == *string2)
 	{
-		if(str1[i] >= 'A' && str1[i] <= 'Z')
+		if(*string1 == '\0')
 		{
-			str1[i] += ('A' - 'a');
+			return 0;
 		}
-		if(str2[i] >= 'A' && str2[i] <= 'Z')
-		{
-			str2[i] += ('A' - 'a');
-		}
-
-		if(str1[i] > str2[i])
-		{
-			return 1;
-		}
-		else if(str1[i] < str2[i])
-		{
-			return -1;
-		}
+		++string1;
+		++string2;
+		++counter;
 	}
-	return 0;
+
+	if(counter == n)
+	{
+		return 0;
+	}
+
+	c1 = (unsigned char)*string1;
+	c2 = (unsigned char)*string2;
+	return c1 - c2;
 }
 
 /*
@@ -121,7 +89,15 @@ destination is also returned.
 */
 char* new_strcat(char* destination, const char* source)
 {
+	char* pointer = destination;
 
+	while (*pointer != '\0')
+	{
+		++pointer;
+	}
+
+	strcpy(pointer, source); //REPLACE WITH new_strcpy WHEN FINISHED
+	return destination;
 }
 
 /*
@@ -130,7 +106,25 @@ destination, but adding a maximum of n characters.
 */
 char* new_strncat(char* destination, const char* source, size_t n)
 {
+	size_t counter = 0;
+	char* pointer = destination;
 
+	while (*pointer != '\0')
+	{
+		pointer++;
+	}
+
+	*pointer = *source;
+
+	while (counter < n && *pointer != '\0')
+	{
+		++counter;
+		++pointer;
+		*pointer = *(++source);
+	}
+
+	*pointer = '\0';
+	return destination;
 }
 
 //Returns the number of characters in string before the null character.
@@ -150,14 +144,14 @@ pointer if character cannot be found.
 */
 char* new_strchr(const char* string, int character)
 {
-	char* c;
-	for(size_t i = 0; i <= new_strlen(string); ++i)
+	while(*string != '\0' && *string != character)
 	{
-		c = &string[i];
-		if(*c == character)
-		{
-			return c;
-		}
+		++string;
+	}
+
+	if(*string == character)
+	{
+		return (char*)string;
 	}
 	return NULL;
 }
@@ -169,4 +163,5 @@ haystack or a NULL pointer if needle cannot be found.
 char* new_strstr(const char* haystack, const char* needle)
 {
 
+	return (char*)NULL;
 }
