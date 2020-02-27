@@ -1,32 +1,16 @@
-#include <stddef.h>
-
-char* new_strcpy(char* destination, const char* source);
-char* new_strncpy(char* destination, const char* source, size_t n);
-int new_strcmp(const char* string1, const char* string2);
-int new_strncmp(const char* string1, const char* string2, size_t n);
-char* new_strcat(char* destination, const char* source);
-char* new_strncat(char* destination, const char* source, size_t n);
-size_t new_strlen(const char* string);
-char* new_strchr(const char* string, int character);
-char* new_strstr(const char* haystack, const char* needle);
-
+#include "new_string.h"
 //Copies the characters from source into destination.
 char* new_strcpy(char* destination, const char* source)
 {
 	char* pointer = destination;
 	while (*source != '\0')
 	{
-		//first peice of free memory = first char in desired string
 		*pointer = *source;
-		//walk it up the string/memory appropriately
 		++pointer;
 		++source;
-
 	}
-	// indicates end of string
-	*pointer = '\0';
 
-	//first peice of memory where string starts
+	*pointer = '\0';
 	return destination;
 }
 
@@ -46,18 +30,12 @@ char* new_strncpy(char* destination, const char* source, size_t n)
 		}
 		else
 		{
-			//first peice of free memory = first char in desired string
 			*pointer = *source;
+			++source;
 		}
-		//walk it up the string/memory appropriately
 		++pointer;
-		++source;
 	}
-	*pointer = '\0';
-
-	//first peice of memory where string starts
 	return destination;
-
 }
 
 /*
@@ -67,17 +45,14 @@ and 0 if the two strings are equal.
 */
 int new_strcmp(const char* string1, const char* string2)
 {
-	unsigned char c1;
-	unsigned char c2;
-
 	while(*string1 != '\0' && *string1 == *string2)
 	{
 		++string1;
 		++string2;
 	}
 
-	c1 = (unsigned char)*string1;
-	c2 = (unsigned char)*string2;
+	const char c1 = *string1;
+	const char c2 = *string2;
 	return c1 - c2;
 }
 
@@ -87,10 +62,7 @@ first n characters.
 */
 int new_strncmp(const char* string1, const char* string2, size_t n)
 {
-	unsigned char c1;
-	unsigned char c2;
 	size_t counter = 0;
-
 	while(counter < n && *string1 == *string2)
 	{
 		if(*string1 == '\0')
@@ -107,8 +79,8 @@ int new_strncmp(const char* string1, const char* string2, size_t n)
 		return 0;
 	}
 
-	c1 = (unsigned char)*string1;
-	c2 = (unsigned char)*string2;
+	const char c1 = *string1;
+	const char c2 = *string2;
 	return c1 - c2;
 }
 
@@ -150,7 +122,8 @@ char* new_strncat(char* destination, const char* source, size_t n)
 	{
 		++counter;
 		++pointer;
-		*pointer = *(++source);
+		++source;
+		*pointer = *source;
 	}
 
 	*pointer = '\0';
@@ -192,15 +165,16 @@ haystack or a NULL pointer if needle cannot be found.
 */
 char* new_strstr(const char* haystack, const char* needle)
 {
-	char* pointer1 = haystack;
-	char* pointer2 = needle;
+	const char* pointer1 = haystack;
+	const char* pointer2 = needle;
 	size_t counter = 0;
-	while(counter < (new_strlen(haystack) - new_strlen(needle) + 1) && (*pointer1 != '\0'))
+	size_t length = (new_strlen(haystack) - new_strlen(needle) + 1);
+	while(counter < length && (*pointer1 != '\0'))
 	{
 		if(*pointer1 == *pointer2)
 		{
-			char* temp1 = pointer1;
-			char* temp2 = pointer2;
+			const char* temp1 = pointer1;
+			const char* temp2 = pointer2;
 			while(*temp1 == *temp2 && *temp2 != '\0')
 			{
 				++temp1;
@@ -208,7 +182,7 @@ char* new_strstr(const char* haystack, const char* needle)
 			}
 			if(*temp2 == '\0')
 			{
-				return pointer1;
+				return (char*)pointer1;
 			}
 		}
 		++pointer1;

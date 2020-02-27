@@ -1,5 +1,4 @@
-#include "project3.c"
-
+#include <stddef.h>
 char* new_strcpy(char* destination, const char* source);
 char* new_strncpy(char* destination, const char* source, size_t n);
 int new_strcmp(const char* string1, const char* string2);
