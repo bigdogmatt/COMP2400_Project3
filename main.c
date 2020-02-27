@@ -11,30 +11,54 @@ void new_strchrTest();
 void new_strcatTest();
 void new_strncatTest();
 void new_strstrTest();
+void new_strlenTest();
 
 
 // main used for testing purposes
 int main()
 {
-	printf("\n \n \n");
+	printf("\n\n\n");
+	new_strlenTest();
+	printf("\n\n\n");
 	new_strcpyTest();
-	printf("\n \n \n");
+	printf("\n\n\n");
 	new_strncpyTest();
-	printf("\n \n \n");
+	printf("\n\n\n");
 	new_strcmpTest();
-	printf("\n \n \n");
+	printf("\n\n\n");
 	new_strncmpTest();
-	printf("\n \n \n");
+	printf("\n\n\n");
 	new_strchrTest();
-	printf("\n \n \n");
+	printf("\n\n\n");
 	new_strcatTest();
-	printf("\n \n \n");
+	printf("\n\n\n");
 	new_strncatTest();
-	printf("\n \n \n");
+	printf("\n\n\n");
 	new_strstrTest();
-	printf("\n \n \n");
+	printf("\n\n\n");
 
 	return 0;
+}
+
+void new_strlenTest()
+{
+	size_t result1 = new_strlen("Hello");
+	size_t result2 = strlen("Hello");
+	size_t result3 = new_strlen("my");
+	size_t result4 = strlen("my");
+	size_t result5 = new_strlen("name");
+	size_t result6 = strlen("name");
+	size_t result7 = new_strlen("is");
+	size_t result8 = strlen("is");
+	size_t result9 = new_strlen("John");
+	size_t result10 = strlen("John");
+
+	printf("***************new_strlen Testing***************\n");
+	printf("String library: %d \t My library: %d\n", result1, result2);
+	printf("String library: %d \t My library: %d\n", result3, result4);
+	printf("String library: %d \t My library: %d\n", result5, result6);
+	printf("String library: %d \t My library: %d\n", result7, result8);
+	printf("String library: %d \t My library: %d\n", result9, result10);
 }
 
 void new_strcpyTest()
@@ -88,6 +112,12 @@ void new_strncpyTest()
 	char destination4[100];
 	char destination5[100];
 	char destination6[100];
+	char destination7[100];
+	char destination8[100];
+	char destination9[100];
+	char destination10[100];
+	char destination11[100];
+	char destination12[100];
 
 	char source1[] = "Hello";
 	char source2[] = "Wombat";
@@ -96,23 +126,23 @@ void new_strncpyTest()
 	char source5[] = " ";
 	char source6[] = "\0";
 
-	char* result1 = strncpy(destination1, source1, 4);
-	char* result2 = new_strncpy(destination1, source1, 4);
+	char* result1 = strncpy(destination1, source1, 3);
+	char* result2 = new_strncpy(destination2, source1, 3);
 
-	char* result3 = strncpy(destination2, source2, 9);
-	char* result4 = new_strncpy(destination2, source2, 9);
+	char* result3 = strncpy(destination3, source2, 9);
+	char* result4 = new_strncpy(destination4, source2, 9);
 
-	char* result5 = strncpy(destination3, source3, 7);
-	char* result6 = new_strncpy(destination3, source3, 7);
+	char* result5 = strncpy(destination5, source3, 7);
+	char* result6 = new_strncpy(destination6, source3, 7);
 
-	char* result7 = strncpy(destination4, source4, 0);
-	char* result8 = new_strncpy(destination4, source4, 0);
+	char* result7 = strncpy(destination7, source4, 10);
+	char* result8 = new_strncpy(destination8, source4, 10);
 
-	char* result9 = strncpy(destination5, source5, 10);
-	char* result10 = new_strncpy(destination5, source5, 10);
+	char* result9 = strncpy(destination9, source5, 10);
+	char* result10 = new_strncpy(destination10, source5, 10);
 
-	char* result11 = strncpy(destination6, source6, 5);
-	char* result12 = new_strncpy(destination6, source6, 5);
+	char* result11 = strncpy(destination11, source5, 5);
+	char* result12 = new_strncpy(destination12, source5, 5);
 
 	printf("***************new_strncpy Testing***************\n");
 	printf("String library: %s \t My library: %s\n", result1, result2);
