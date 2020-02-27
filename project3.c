@@ -12,11 +12,32 @@ size_t new_strlen(const char* string);
 char* new_strchr(const char* string, int character);
 char* new_strstr(const char* haystack, const char* needle);
 
+
 //Copies the characters from source into destination.
 char* new_strcpy(char* destination, const char* source)
 {
 
-	return (char*)NULL;
+	//begining of string
+	char *startSpot = destination;
+
+	while (*source != '\0'){
+		
+		//first peice of free memory = first char in desired string
+		*destination = *source;
+
+		//walk it up the string/memory appropriately
+		destination++;
+		source++;
+
+	}//end while
+
+
+	// indicates end of string
+	*destination = '\0';
+
+	//first peice of memory where string starts
+	return startSpot;
+
 }
 
 /*
@@ -27,7 +48,36 @@ characters are filled with null characters.
 char* new_strncpy(char* destination, const char* source, size_t n)
 {
 
-	return (char*)NULL;
+	//begining of string
+	char *startSpot = destination;
+	int i = 0;
+
+	while ( (*source != '\0') && (i != n) ){
+		
+		//first peice of free memory = first char in desired string
+		*destination = *source;
+
+		//walk it up the string/memory appropriately
+		destination++;
+		source++;
+		i++;
+
+	}//end while
+
+	
+
+	//finish out the char array with null
+	while (*source != '\0'){
+		*destination = '\0';
+		destination++;
+		source++;
+		i++;
+	}//endwhile
+
+
+	//first peice of memory where string starts
+	return startSpot;
+
 }
 
 /*
