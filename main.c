@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "new_string.h"
 #include <string.h>
+#include <stddef.h>
 
 void new_strcpyTest();
 void new_strncpyTest();
