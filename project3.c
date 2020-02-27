@@ -1,7 +1,5 @@
 #include <stddef.h>
 
-#include <string.h> //REMOVE WHEN FINISHED
-
 char* new_strcpy(char* destination, const char* source);
 char* new_strncpy(char* destination, const char* source, size_t n);
 int new_strcmp(const char* string1, const char* string2);
@@ -12,32 +10,24 @@ size_t new_strlen(const char* string);
 char* new_strchr(const char* string, int character);
 char* new_strstr(const char* haystack, const char* needle);
 
-
 //Copies the characters from source into destination.
 char* new_strcpy(char* destination, const char* source)
 {
-
-	//begining of string
-	char *startSpot = destination;
-
-	while (*source != '\0'){
-		
+	char* pointer = destination;
+	while (*source != '\0')
+	{
 		//first peice of free memory = first char in desired string
-		*destination = *source;
-
+		*pointer = *source;
 		//walk it up the string/memory appropriately
-		destination++;
-		source++;
+		++pointer;
+		++source;
 
-	}//end while
-
-
+	}
 	// indicates end of string
-	*destination = '\0';
+	*pointer = '\0';
 
 	//first peice of memory where string starts
-	return startSpot;
-
+	return destination;
 }
 
 /*
@@ -47,36 +37,26 @@ characters are filled with null characters.
 */
 char* new_strncpy(char* destination, const char* source, size_t n)
 {
-
-	//begining of string
-	char *startSpot = destination;
-	int i = 0;
-
-	while ( (*source != '\0') && (i != n) ){
-		
-		//first peice of free memory = first char in desired string
-		*destination = *source;
-
+	char* pointer = destination;
+	for(int i = 0; i < n; ++i)
+	{
+		if(*source == '\0')
+		{
+			*pointer = '\0';
+		}
+		else
+		{
+			//first peice of free memory = first char in desired string
+			*pointer = *source;
+		}
 		//walk it up the string/memory appropriately
-		destination++;
-		source++;
-		i++;
-
-	}//end while
-
-	
-
-	//finish out the char array with null
-	while (*source != '\0'){
-		*destination = '\0';
-		destination++;
-		source++;
-		i++;
-	}//endwhile
-
+		++pointer;
+		++source;
+	}
+	*pointer = '\0';
 
 	//first peice of memory where string starts
-	return startSpot;
+	return destination;
 
 }
 
@@ -146,7 +126,7 @@ char* new_strcat(char* destination, const char* source)
 		++pointer;
 	}
 
-	strcpy(pointer, source); //REPLACE WITH new_strcpy WHEN FINISHED
+	new_strcpy(pointer, source);
 	return destination;
 }
 
@@ -212,6 +192,27 @@ haystack or a NULL pointer if needle cannot be found.
 */
 char* new_strstr(const char* haystack, const char* needle)
 {
-
+	char* pointer1 = haystack;
+	char* pointer2 = needle;
+	size_t counter = 0;
+	while(counter < (new_strlen(haystack) - new_strlen(needle) + 1) && (*pointer1 != '\0'))
+	{
+		if(*pointer1 == *pointer2)
+		{
+			char* temp1 = pointer1;
+			char* temp2 = pointer2;
+			while(*temp1 == *temp2 && *temp2 != '\0')
+			{
+				++temp1;
+				++temp2;
+			}
+			if(*temp2 == '\0')
+			{
+				return pointer1;
+			}
+		}
+		++pointer1;
+		++counter;
+	}
 	return (char*)NULL;
 }
