@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "new_string.h"
 #include <string.h>
+#include <stddef.h>
 
 void new_strcpyTest();
 void new_strncpyTest();
@@ -327,83 +328,6 @@ void new_strstrTest()
 	printf("String library: %s \t \nMy library: %s\n", result5, result6);
 	printf("String library: %s \t \nMy library: %s\n", result7, result8);
 	printf("String library: %s \t \nMy library: %s\n", result9, result10);
-=======
-void new_strncopyTest(){
 
-	int result = strncopy("", "cats and womats", 3);
-	int result2 = new_strncopy("", "cats and womats", 3);
-
-	int result3 = strncopy("", "hello", 6);
-	int result4 = new_strncopy("", "hello", 6);
-
-	int result5 = strncopy("", "hello", 7);
-	int result6 = new_strncopy("", "hello", 7);
-
-	int result7 = strncopy("", "helpo", 3);
-	int result8 = new_strncopy("", "helpo", 3);
-
-	int result9 = strncopy("", "big ol sentence with more than a few words", 8);
-	int result10 = new_strncopy("", "big ol sentence with more than a few words", 8);
-
-	int result11 = strncopy("", "small", 5);
-	int result12 = new_strncopy("", "small", 5);
-
-	int result13 = strncopy("", "pillowings", 3);
-	int result14 = new_strncopy("", "pillowings", 3);
-
-	int result15 = strncopy("", "truck", 9);
-	int result16 = new_strncopy("", "truck", 9);
-
-	printf("***************new_strncopy Testing***************\n");
-	printf("String library: %d \t My library: %d\n", result, result2);
-	printf("String library: %d \t My library: %d\n", result3, result4);
-	printf("String library: %d \t My library: %d\n", result5, result6);
-	printf("String library: %d \t My library: %d\n", result7, result8);
-	printf("String library: %d \t My library: %d\n", result9, result10);
-	printf("String library: %d \t My library: %d\n", result11, result12);
-	printf("String library: %d \t My library: %d\n", result13, result14);
-	printf("String library: %d \t My library: %d\n", result15, result16);
-
-}
-
-
-
-
-
-void new_strcopyTest(){
-
-	int result = strcopy("", "cats and womats);
-	int result2 = new_strcopy("", "cats and womats");
-
-	int result3 = strcopy("", "hello");
-	int result4 = new_strcopy("", "hello");
-
-	int result5 = strcopy("", "hello");
-	int result6 = new_strcopy("", "hello");
-
-	int result7 = strcopy("", "helpo");
-	int result8 = new_strcopy("", "helpo");
-
-	int result9 = strcopy("", "big ol sentence with more than a few words");
-	int result10 = new_strcopy("", "big ol sentence with more than a few words");
-
-	int result11 = strcopy("", "small");
-	int result12 = new_strcopy("", "small");
-
-	int result13 = strcopy("", "pillowings");
-	int result14 = new_strcopy("", "pillowings");
-
-	int result15 = strcopy("", "truck");
-	int result16 = new_strcopy("", "truck");
-
-	printf("***************new_strcopy Testing***************\n");
-	printf("String library: %d \t My library: %d\n", result, result2);
-	printf("String library: %d \t My library: %d\n", result3, result4);
-	printf("String library: %d \t My library: %d\n", result5, result6);
-	printf("String library: %d \t My library: %d\n", result7, result8);
-	printf("String library: %d \t My library: %d\n", result9, result10);
-	printf("String library: %d \t My library: %d\n", result11, result12);
-	printf("String library: %d \t My library: %d\n", result13, result14);
-	printf("String library: %d \t My library: %d\n", result15, result16);
 
 }
